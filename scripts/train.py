@@ -60,7 +60,7 @@ def get_args():
     )
 
     parser.add_argument(
-        '-p',
+        '-t',
         '--patience',
         default=5,
         type=int,
