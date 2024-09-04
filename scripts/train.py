@@ -62,7 +62,7 @@ def get_args():
     parser.add_argument(
         '-p',
         '--patience',
-        default=8,
+        default=5,
         type=int,
         help="Patience for early stopping."
     )
