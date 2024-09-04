@@ -7,7 +7,7 @@ command:
   - "./configs/experiments/temporal-fusion-btcusdt-quantile.yaml"
 method: random
 metric:
-  goal: maximize
+  goal: minimize
   name: val_loss
 parameters:
   past_window:
@@ -19,7 +19,7 @@ parameters:
   model:
     parameters:
       name:
-        value: "TemporalFusionTransoformer"
+        value: "TemporalFusionTransformer"
       share_single_variable_networks:
         value: false
       hidden_size:
