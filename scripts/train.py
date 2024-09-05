@@ -15,6 +15,8 @@ from pytorch_forecasting.metrics import MAE, RMSE
 from pytorch_forecasting import QuantileLoss
 from pytorch_forecasting.models.temporal_fusion_transformer import TemporalFusionTransformer
 
+from ml.loss import GMADL
+
 
 def get_args():
     parser = argparse.ArgumentParser(
@@ -129,6 +131,12 @@ def get_loss(config):
 
     if loss_name == 'Quantile':
         return QuantileLoss(config['loss']['quantiles'])
+
+    if loss_name == 'GMADL':
+        return GMADL(
+            a=config['loss']['a'],
+            b=config['loss']['b']
+        )
 
     raise ValueError("Unknown loss")
 
