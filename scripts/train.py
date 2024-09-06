@@ -13,7 +13,8 @@ from lightning.pytorch.callbacks import ModelCheckpoint
 from pytorch_forecasting.data.timeseries import TimeSeriesDataSet
 from pytorch_forecasting.metrics import MAE, RMSE
 from pytorch_forecasting import QuantileLoss
-from pytorch_forecasting.models.temporal_fusion_transformer import TemporalFusionTransformer
+from pytorch_forecasting.models.temporal_fusion_transformer import (
+    TemporalFusionTransformer)
 
 from ml.loss import GMADL
 
@@ -112,10 +113,14 @@ def get_dataset(config, project):
         max_prediction_length=config['future_window'],
         static_reals=config['data']['fields']['static_real'],
         static_categoricals=config['data']['fields']['static_cat'],
-        time_varying_known_reals=config['data']['fields']['dynamic_known_real'],
-        time_varying_known_categoricals=config['data']['fields']['dynamic_known_cat'],
-        time_varying_unknown_reals=config['data']['fields']['dynamic_unknown_real'],
-        time_varying_unknown_categoricals=config['data']['fields']['dynamic_unknown_cat'],
+        time_varying_known_reals=config['data']['fields'][
+            'dynamic_known_real'],
+        time_varying_known_categoricals=config['data']['fields'][
+            'dynamic_known_cat'],
+        time_varying_unknown_reals=config['data']['fields'][
+            'dynamic_unknown_real'],
+        time_varying_unknown_categoricals=config['data']['fields'][
+            'dynamic_unknown_cat'],
         randomize_length=False
     )
 
@@ -245,6 +250,8 @@ def main():
     trainer.validate(model, dataloaders=valid.to_dataloader(
         batch_size=batch_size, train=False, num_workers=3),
         ckpt_path=ckpt_path)
+
+    # TODO: Clean up non-best models to save space on wandb
 
 
 if __name__ == '__main__':

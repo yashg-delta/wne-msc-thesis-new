@@ -12,4 +12,6 @@ class GMADL(MultiHorizonMetric):
         self.b = b
 
     def loss(self, y_pred, target):
-        return -1 * (1 / (1 + torch.exp(-self.a * self.to_prediction(y_pred) * target)) - 0.5) * torch.pow(torch.abs(target), self.b)
+        return -1 * \
+            (1 / (1 + torch.exp(-self.a * self.to_prediction(y_pred) * target)
+                  ) - 0.5) * torch.pow(torch.abs(target), self.b)
