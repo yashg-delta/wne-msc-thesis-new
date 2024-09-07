@@ -251,7 +251,11 @@ def main():
         batch_size=batch_size, train=False, num_workers=3),
         ckpt_path=ckpt_path)
 
-    # TODO: Clean up non-best models to save space on wandb
+    # Clean up models that do not have best/latest tags, to save space on wandb
+    for artifact in wandb.Api().run(run.path).logged_artifacts():
+        if artifact.type == "model" and not artifact.aliases:
+            logging.info(f"Deleting artifact {artifact.name}")
+            artifact.delete()
 
 
 if __name__ == '__main__':
