@@ -11,12 +11,10 @@ from lightning.pytorch.callbacks.early_stopping import EarlyStopping
 from lightning.pytorch.loggers import WandbLogger
 from lightning.pytorch.callbacks import ModelCheckpoint
 from pytorch_forecasting.data.timeseries import TimeSeriesDataSet
-from pytorch_forecasting.metrics import MAE, RMSE
 from pytorch_forecasting import QuantileLoss
-from pytorch_forecasting.models.temporal_fusion_transformer import (
-    TemporalFusionTransformer)
 
 from ml.loss import GMADL
+from ml.model import get_model
 
 
 def get_args():
@@ -144,25 +142,6 @@ def get_loss(config):
         )
 
     raise ValueError("Unknown loss")
-
-
-def get_model(config, dataset, loss):
-    model_name = config['model']['name']
-
-    if model_name == 'TemporalFusionTransformer':
-        return TemporalFusionTransformer.from_dataset(
-            dataset,
-            hidden_size=config['model']['hidden_size'],
-            dropout=config['model']['dropout'],
-            attention_head_size=config['model']['attention_head_size'],
-            hidden_continuous_size=config['model']['hidden_continuous_size'],
-            learning_rate=config['model']['learning_rate'],
-            share_single_variable_networks=False,
-            loss=loss,
-            logging_metrics=[MAE(), RMSE()]
-        )
-
-    raise ValueError("Unknown model")
 
 
 def main():
