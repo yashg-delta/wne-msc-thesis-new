@@ -14,10 +14,11 @@ metric:
   name: val_loss
 parameters:
   data:
-    dataset: 
-      value: "btc-usdt-5m:latest"
-    validation:
-      value: 0.2
-    sliding_window:
-      min: 0
-      max: 5
+    parameters:
+      dataset: 
+        value: "btc-usdt-5m:latest"
+      validation:
+        value: 0.2
+      sliding_window:
+        min: 0
+        max: 5
