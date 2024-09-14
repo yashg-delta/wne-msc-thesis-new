@@ -1,6 +1,22 @@
 import torch
 
+from pytorch_forecasting import QuantileLoss
 from pytorch_forecasting.metrics.base_metrics import MultiHorizonMetric
+
+
+def get_loss(config):
+    loss_name = config['loss']['name']
+
+    if loss_name == 'Quantile':
+        return QuantileLoss(config['loss']['quantiles'])
+
+    if loss_name == 'GMADL':
+        return GMADL(
+            a=config['loss']['a'],
+            b=config['loss']['b']
+        )
+
+    raise ValueError("Unknown loss")
 
 
 class GMADL(MultiHorizonMetric):
