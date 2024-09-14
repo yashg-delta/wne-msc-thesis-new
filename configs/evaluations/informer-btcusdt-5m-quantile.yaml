@@ -4,7 +4,7 @@ command:
   - ${env}
   - ${interpreter}
   - ${program}
-  - "./configs/experiments/temporal-fusion-btcusdt-quantile.yaml"
+  - "./configs/experiments/informer-btcusdt-5m-quantile.yaml"
   - "--patience"
   - "10"
   - "--store-predictions"
