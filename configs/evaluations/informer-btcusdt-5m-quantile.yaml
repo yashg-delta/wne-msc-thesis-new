@@ -13,8 +13,8 @@ metric:
   goal: minimize
   name: val_loss
 parameters:
-  dataset:
-    name: 
+  data:
+    dataset: 
       value: "btc-usdt-5m:latest"
     validation:
       value: 0.2
