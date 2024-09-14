@@ -72,6 +72,8 @@ def load_model_from_wandb(run):
     if model_name == 'TemporalFusionTransformer':
         return TemporalFusionTransformer.load_from_checkpoint(
             model_artifact.file())
+    if model_name == 'Informer':
+        return Informer.load_from_checkpoint(model_artifact.file())
 
     raise ValueError("Invalid model name")
 
