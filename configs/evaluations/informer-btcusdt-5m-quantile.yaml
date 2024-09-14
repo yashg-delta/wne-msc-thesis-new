@@ -1,0 +1,23 @@
+program: ./scripts/train.py
+project: wne-masters-thesis-testing
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - "./configs/experiments/temporal-fusion-btcusdt-quantile.yaml"
+  - "--patience"
+  - "10"
+  - "--store-predictions"
+method: grid
+metric:
+  goal: minimize
+  name: val_loss
+parameters:
+  dataset:
+    name: 
+      value: "btc-usdt-5m:latest"
+    validation:
+      value: 0.2
+    sliding_window:
+      min: 0
+      max: 5

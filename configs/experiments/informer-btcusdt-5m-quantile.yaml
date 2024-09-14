@@ -1,0 +1,69 @@
+future_window:
+  value: 5
+past_window:
+  value: 48
+batch_size:
+  value: 64
+max_epochs:
+  value: 30
+data:
+  value:
+    dataset: "btc-usdt-5m:latest"
+    sliding_window: 0
+    validation: 0.2
+fields:
+  value:
+    time_index: "time_index"
+    target: "close_price"
+    group_ids: ["group_id"]
+    dynamic_unknown_real:
+      - "high_price"
+      - "low_price"
+      - "open_price"
+      - "close_price"
+      - "volume"
+      - "open_to_close_price"
+      - "high_to_close_price"
+      - "low_to_close_price"
+      - "high_to_low_price"
+      - "returns"
+      - "log_returns"
+      - "vol_1h"
+      - "macd"
+      - "macd_signal"
+      - "rsi"
+      - "low_bband_to_close_price"
+      - "up_bband_to_close_price"
+      - "mid_bband_to_close_price"
+      - "sma_1h_to_close_price"
+      - "sma_1d_to_close_price"
+      - "sma_7d_to_close_price"
+      - "ema_1h_to_close_price"
+      - "ema_1d_to_close_price"
+    dynamic_unknown_cat: []
+    dynamic_known_real:
+      - "effective_rates"
+      - "vix_close_price"
+      - "fear_greed_index"
+      - "vol_1d"
+      - "vol_7d"
+    dynamic_known_cat:
+      - "hour"
+      - "weekday"
+    static_real: []
+    static_cat: []
+loss:
+  value:
+   name: "Quantile"
+   quantiles: [0.02, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.98]
+model:
+  value:
+    name: "Informer"
+    d_model: 256
+    d_fully_connected: 512
+    n_attention_heads: 2
+    dropout: 0.1
+    n_encoder_layers: 2
+    n_decoder_layers: 1
+    learning_rate: 0.001
+    optimizer: "Adam"
