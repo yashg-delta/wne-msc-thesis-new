@@ -22,7 +22,7 @@ parameters:
     parameters:
       name:
         value: "Informer"
-      dmodel:
+      d_model:
         values: [256, 512, 1024]
       d_fully_connected:
         values: [256, 512, 1024]

@@ -6,7 +6,7 @@ command:
   - ${program}
   - "./configs/experiments/informer-btcusdt-15m-quantile.yaml"
   - "--patience"
-  - "10"
+  - "20"
   - "--store-predictions"
 method: grid
 metric:
