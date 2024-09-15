@@ -5,7 +5,7 @@ past_window:
 batch_size:
   value: 64
 max_epochs:
-  value: 30
+  value: 50
 data:
   value:
     dataset: "btc-usdt-30m:latest"
