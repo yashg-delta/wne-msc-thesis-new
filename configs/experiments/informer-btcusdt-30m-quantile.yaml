@@ -5,7 +5,7 @@ past_window:
 batch_size:
   value: 64
 max_epochs:
-  value: 1
+  value: 30
 data:
   value:
     dataset: "btc-usdt-30m:latest"
@@ -55,7 +55,7 @@ fields:
 loss:
   value:
    name: "Quantile"
-   quantiles: [0.02, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.98]
+   quantiles: [0.01, 0.02, 0.03, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.97, 0.98, 0.99]
 model:
   value:
     name: "Informer"
