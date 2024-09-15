@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import logging
+# import logging
 from typing import Dict, Any
 
 EXIT_POSITION = 0
@@ -100,6 +100,15 @@ class ModelQuantilePredictionsStrategy(ModelPredictionsStrategyBase):
         self.quantile_exit_long = quantile_exit_long
         self.quantile_enter_short = quantile_enter_short
         self.quantile_exit_short = quantile_exit_short
+
+    def info(self):
+        return super().info() | {
+            'quantiles': self.quantiles,
+            'quantile_enter_long': self.quantile_enter_long,
+            'quantile_exit_long': self.quantile_exit_long,
+            'quantile_enter_short': self.quantile_enter_short,
+            'quantile_exit_short': self.quantile_exit_short
+        }
 
     def get_positions(self, data):
         arr_preds = data['prediction'].to_numpy()

@@ -1,13 +1,58 @@
+from typing import Dict, List, Any, Optional, Callable
+import itertools
 import pandas as pd
 import numpy as np
+import functools
+from tqdm import tqdm
+from multiprocessing import Pool
 from strategy import metrics
 from strategy.strategy import LONG_POSITION, SHORT_POSITION, EXIT_POSITION
 from strategy.strategy import StrategyBase
 
 
+def parameter_sweep(
+        data: pd.DataFrame,
+        strategy_class: StrategyBase.__class__,
+        params: Dict[str, List[Any]],
+        num_workers: int = 4,
+        params_filter: Optional[Callable] = None,
+        log_every: int = 200,
+        exchange_fee: float = 0.001,
+        interval: str = '5min') -> pd.DataFrame:
+    """Evaluates the strategy on a different sets of hyperparameters."""
+
+    # Obtain sets of parameters to evaluate
+    param_sets = list(filter(params_filter, map(lambda p: dict(
+        zip(params.keys(), p)), itertools.product(*params.values()))))
+
+    result = []
+    total = len(param_sets)
+
+    # Evaluate sets of different hyperparameters in parallel
+    with Pool(num_workers) as pool, tqdm(total=total) as pbar:
+        for chunk in (param_sets[i:i + log_every]
+                      for i in range(0, total, log_every)):
+            tmp = list(
+                pool.map(
+                    functools.partial(
+                        evaluate_strategy,
+                        data,
+                        exchange_fee=exchange_fee,
+                        interval=interval,
+                        include_arrays=False),
+                    map(
+                        lambda p: strategy_class(
+                            **p), chunk)))
+            pbar.update(len(tmp))
+            result += tmp
+
+    return pd.DataFrame(result)
+
+
 def evaluate_strategy(
         data: pd.DataFrame,
         strategy: StrategyBase,
+        include_arrays: bool = True,
         exchange_fee: float = 0.001,
         interval: str = "5min"):
     """Evaluates a trading strategy."""
@@ -57,11 +102,16 @@ def evaluate_strategy(
                            np.append(positions[1:], [EXIT_POSITION])),
         'long_pos': np.sum(positions == LONG_POSITION) / positions.size,
         'short_pos': np.sum(positions == SHORT_POSITION) / positions.size,
-        # Arrays
-        'portfolio_value': portfolio_value,
-        'strategy_returns': strategy_returns,
-        'strategy_positions': np.append([EXIT_POSITION], positions),
-        'time': timestamps
     }
+
+    result |= strategy.info()
+
+    if include_arrays:
+        result |= {
+            'portfolio_value': portfolio_value,
+            'strategy_returns': strategy_returns,
+            'strategy_positions': np.append([EXIT_POSITION], positions),
+            'time': timestamps
+        }
 
     return result
