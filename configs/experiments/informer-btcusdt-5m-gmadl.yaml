@@ -1,5 +1,5 @@
 future_window:
-  value: 5
+  value: 2
 past_window:
   value: 22
 batch_size:
