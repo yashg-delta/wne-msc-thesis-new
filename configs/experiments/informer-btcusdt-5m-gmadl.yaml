@@ -5,7 +5,7 @@ past_window:
 batch_size:
   value: 64
 max_epochs:
-  value: 30
+  value: 40
 data:
   value:
     dataset: "btc-usdt-5m:latest"
@@ -14,7 +14,7 @@ data:
 fields:
   value:
     time_index: "time_index"
-    target: "close_price"
+    target: "returns"
     group_ids: ["group_id"]
     dynamic_unknown_real:
       - "high_price"

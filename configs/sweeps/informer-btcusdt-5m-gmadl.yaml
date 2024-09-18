@@ -31,9 +31,9 @@ parameters:
       dropout:
         values: [0.05, 0.1, 0.2, 0.3]
       n_encoder_layers:
-        values: [1, 2, 4, 6]
+        values: [1, 2, 3]
       n_decoder_layers: 
-        values: [1, 2]
+        values: [1, 2, 3]
       learning_rate:
         values: [0.001, 0.0005, 0.0001]
       optimizer:
