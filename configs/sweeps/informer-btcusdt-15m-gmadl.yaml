@@ -1,11 +1,11 @@
 program: ./scripts/train.py
-name: informer-btcusdt-5m-gmadl-sweep
+name: informer-btcusdt-15m-gmadl-sweep
 project: wne-masters-thesis-testing
 command:
   - ${env}
   - ${interpreter}
   - ${program}
-  - "./configs/experiments/informer-btcusdt-5m-gmadl.yaml"
+  - "./configs/experiments/informer-btcusdt-15m-gmadl.yaml"
   - "--patience"
   - "15"
 method: random
