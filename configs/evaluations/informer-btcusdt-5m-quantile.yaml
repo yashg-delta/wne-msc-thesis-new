@@ -1,4 +1,5 @@
 program: ./scripts/train.py
+name: informer-btcusdt-5m-quantile-eval
 project: wne-masters-thesis-testing
 command:
   - ${env}
