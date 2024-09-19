@@ -1,0 +1,24 @@
+program: ./scripts/train.py
+project: wne-masters-thesis-testing
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - "./configs/experiments/informer-btcusdt-30m-gmadl.yaml"
+  - "--patience"
+  - "20"
+  - "--store-predictions"
+method: grid
+metric:
+  goal: minimize
+  name: val_loss
+parameters:
+  data:
+    parameters:
+      dataset: 
+        value: "btc-usdt-30m:latest"
+      validation:
+        value: 0.2
+      sliding_window:
+        min: 0
+        max: 5
