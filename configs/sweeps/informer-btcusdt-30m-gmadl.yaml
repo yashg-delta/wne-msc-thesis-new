@@ -8,6 +8,8 @@ command:
   - "./configs/experiments/informer-btcusdt-30m-gmadl.yaml"
   - "--patience"
   - "15"
+  - "--val-check-interval"
+  - "100"
 method: random
 metric:
   goal: minimize

@@ -8,6 +8,8 @@ command:
   - "./configs/experiments/informer-btcusdt-30m-quantile.yaml"
   - "--patience"
   - "15"
+  - "--val-check-interval"
+  - "100"
 method: random
 metric:
   goal: minimize
@@ -28,12 +30,12 @@ parameters:
       d_fully_connected:
         values: [256, 512, 1024]
       n_attention_heads:
-        values: [1, 2, 4, 6]
+        values: [1, 2, 4]
       dropout:
         values: [0.05, 0.1, 0.2, 0.3]
       n_encoder_layers:
         values: [1, 2, 3]
-      n_decoder_layers: 
+      n_decoder_layers:
         values: [1, 2, 3]
       learning_rate:
         values: [0.001, 0.0005, 0.0001]
