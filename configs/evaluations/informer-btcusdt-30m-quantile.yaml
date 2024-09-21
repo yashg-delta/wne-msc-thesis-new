@@ -9,6 +9,8 @@ command:
   - "--patience"
   - "20"
   - "--store-predictions"
+  - "--val-check-interval"
+  - "100"
 method: grid
 metric:
   goal: minimize
