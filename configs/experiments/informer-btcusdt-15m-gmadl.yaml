@@ -1,9 +1,9 @@
 future_window:
   value: 2
 past_window:
-  value: 28
+  value: 70
 batch_size:
-  value: 256
+  value: 128
 max_epochs:
   value: 40
 data:
@@ -60,11 +60,11 @@ loss:
 model:
   value:
     name: "Informer"
-    d_model: 256
+    d_model: 1024
     d_fully_connected: 256
-    n_attention_heads: 2
-    dropout: 0.05
-    n_encoder_layers: 1
-    n_decoder_layers: 1
-    learning_rate: 0.0001
+    n_attention_heads: 4
+    dropout: 0.03
+    n_encoder_layers: 3
+    n_decoder_layers: 3
+    learning_rate: 0.001
     optimizer: "Adam"
