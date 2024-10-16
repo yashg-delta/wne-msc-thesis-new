@@ -200,3 +200,4 @@ lightning_logs/
 wne-masters-thesis-testing/
 notebooks/cache/
 notebooks/images/
+.DS_Store
