@@ -9,9 +9,10 @@ def plot_sweep_results(
         parameters: List[str],
         objective: str = 'value',
         top_n: int = 5,
+        round: int = 2,
         title: str = "Hyperparameters search results"):
     """Helper function for plotting results of hyperparameter search."""
-    data = sweep_results[list(parameters) + [objective]].round(2)
+    data = sweep_results[list(parameters) + [objective]].round(round)
 
     fig = ff.create_table(
         data.sort_values(

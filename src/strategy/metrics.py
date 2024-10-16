@@ -6,6 +6,8 @@ from numpy.typing import NDArray
 NUM_INTERVALS = {
     'min': 365 * 24 * 60,
     '5min': 365 * 24 * 12,
+    '15min': 365 * 24 * 4,
+    '30min': 365 * 24 * 2,
     'hour': 365 * 24,
     'day': 365
 }
@@ -48,7 +50,12 @@ def max_drawdown(array: NDArray[Any]):
     return np.max((cummax - array) / cummax)
 
 
-# def modified_ir(array: NDArray[Any]):
-#     """Information Ratio adjusted by drawdown and ARC."""
-# return ir(array) * arc(array) * (np.sign(arc(array)) /
-# max_drawdown(array))
+def modified_ir(array: NDArray[Any], interval: str = '5min'):
+    ret = (ir(array, interval=interval)
+           * np.abs(arc(array, interval=interval)))
+    md = max_drawdown(array)
+
+    if md > 0:
+        ret = ret / md
+
+    return ret

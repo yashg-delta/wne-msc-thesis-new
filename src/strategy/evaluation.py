@@ -18,6 +18,8 @@ def parameter_sweep(
         params_filter: Optional[Callable] = None,
         log_every: int = 200,
         exchange_fee: float = 0.001,
+        padding: int = 0,
+        sort_by: str = 'mod_ir',
         interval: str = '5min') -> pd.DataFrame:
     """Evaluates the strategy on a different sets of hyperparameters."""
 
@@ -39,20 +41,24 @@ def parameter_sweep(
                         data,
                         exchange_fee=exchange_fee,
                         interval=interval,
+                        padding=padding,
                         include_arrays=False),
                     map(
                         lambda p: strategy_class(
                             **p), chunk)))
             pbar.update(len(tmp))
-            result += tmp
+            result += list(zip(tmp, map(
+                lambda p: strategy_class(
+                    **p), chunk)))
 
-    return pd.DataFrame(result)
+    return sorted(result, key=lambda x: x[0][sort_by], reverse=True)
 
 
 def evaluate_strategy(
         data: pd.DataFrame,
         strategy: StrategyBase,
         include_arrays: bool = True,
+        padding: int = 0,
         exchange_fee: float = 0.001,
         interval: str = "5min"):
     """Evaluates a trading strategy."""
@@ -75,6 +81,12 @@ def evaluate_strategy(
     timestamps = data['close_time'].to_numpy()
     assert positions.shape[0] == timestamps.shape[0] - 1
 
+    # Pad the results
+    positions = positions[padding:]
+    timestamps = timestamps[padding:]
+    long_returns = long_returns[padding:]
+    short_returns = short_returns[padding:]
+
     # Compute returns of the strategy.
     strategy_returns = np.zeros_like(positions, dtype=np.float64)
     strategy_returns[positions == LONG_POSITION] = \
@@ -83,9 +95,9 @@ def evaluate_strategy(
         short_returns[positions == SHORT_POSITION]
 
     # Include exchange fees
-    positions_changed = np.append([EXIT_POSITION], positions[:-1]) != positions
-    strategy_returns[positions_changed] = (
-        strategy_returns[positions_changed] + 1.0) * (1.0 - exchange_fee) - 1.0
+    strategy_returns = (strategy_returns + 1.0) * (
+        1.0 - exchange_fee * np.abs(np.append(
+            [EXIT_POSITION], positions[:-1]) - positions)) - 1.0
 
     strategy_returns = np.append([0.], strategy_returns)
     portfolio_value = np.cumprod(strategy_returns + 1)
@@ -97,9 +109,10 @@ def evaluate_strategy(
         'arc': metrics.arc(portfolio_value, interval=interval),
         'asd': metrics.asd(portfolio_value, interval=interval),
         'ir': metrics.ir(portfolio_value, interval=interval),
+        'mod_ir': metrics.modified_ir(portfolio_value, interval=interval),
         'md': metrics.max_drawdown(portfolio_value),
-        'n_trades': np.sum(np.append([EXIT_POSITION], positions[:-1]) !=
-                           np.append(positions[1:], [EXIT_POSITION])),
+        'n_trades': np.sum(np.abs(np.append([EXIT_POSITION], positions[:-1]) -
+                           np.append(positions[1:], [EXIT_POSITION]))),
         'long_pos': np.sum(positions == LONG_POSITION) / positions.size,
         'short_pos': np.sum(positions == SHORT_POSITION) / positions.size,
     }
