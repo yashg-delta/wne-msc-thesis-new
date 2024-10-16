@@ -198,3 +198,5 @@ wandb/
 artifacts/
 lightning_logs/
 wne-masters-thesis-testing/
+notebooks/cache/
+notebooks/images/
