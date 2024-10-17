@@ -14,7 +14,7 @@ data:
 fields:
   value:
     time_index: "time_index"
-    target: "close_price"
+    target: "returns"
     group_ids: ["group_id"]
     dynamic_unknown_real:
       - "high_price"
@@ -22,31 +22,12 @@ fields:
       - "open_price"
       - "close_price"
       - "volume"
-      - "open_to_close_price"
-      - "high_to_close_price"
-      - "low_to_close_price"
-      - "high_to_low_price"
       - "returns"
-      - "log_returns"
-      - "vol_1h"
-      - "macd"
-      - "macd_signal"
-      - "rsi"
-      - "low_bband_to_close_price"
-      - "up_bband_to_close_price"
-      - "mid_bband_to_close_price"
-      - "sma_1h_to_close_price"
-      - "sma_1d_to_close_price"
-      - "sma_7d_to_close_price"
-      - "ema_1h_to_close_price"
-      - "ema_1d_to_close_price"
     dynamic_unknown_cat: []
     dynamic_known_real:
       - "effective_rates"
       - "vix_close_price"
       - "fear_greed_index"
-      - "vol_1d"
-      - "vol_7d"
     dynamic_known_cat:
       - "hour"
       - "weekday"
