@@ -1,6 +1,6 @@
 import torch
 
-from pytorch_forecasting import QuantileLoss
+from pytorch_forecasting import QuantileLoss, RMSE
 from pytorch_forecasting.metrics.base_metrics import MultiHorizonMetric
 
 
@@ -15,6 +15,9 @@ def get_loss(config):
             a=config['loss']['a'],
             b=config['loss']['b']
         )
+    
+    if loss_name == 'RMSE':
+        return RMSE()
 
     raise ValueError("Unknown loss")
 

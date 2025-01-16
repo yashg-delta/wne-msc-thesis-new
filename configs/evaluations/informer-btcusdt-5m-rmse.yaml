@@ -1,0 +1,25 @@
+program: ./scripts/train.py
+name: informer-btcusdt-5m-rmse-eval
+project: wne-masters-thesis-testing
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - "./configs/experiments/informer-btcusdt-5m-rmse.yaml"
+  - "--patience"
+  - "20"
+  - "--store-predictions"
+method: grid
+metric:
+  goal: minimize
+  name: val_loss
+parameters:
+  data:
+    parameters:
+      dataset: 
+        value: "btc-usdt-5m:latest"
+      validation:
+        value: 0.2
+      sliding_window:
+        min: 0
+        max: 5

@@ -1,0 +1,41 @@
+program: ./scripts/train.py
+name: informer-btcusdt-5m-rmse-sweep
+project: wne-masters-thesis-testing
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - "./configs/experiments/informer-btcusdt-5m-rmse.yaml"
+  - "--patience"
+  - "15"
+method: random
+metric:
+  goal: minimize
+  name: val_loss
+parameters:
+  past_window:
+    distribution: int_uniform
+    min: 20
+    max: 120
+  batch_size:
+    values: [64, 128, 256]
+  model:
+    parameters:
+      name:
+        value: "Informer"
+      d_model:
+        values: [256, 512, 1024]
+      d_fully_connected:
+        values: [256, 512, 1024]
+      n_attention_heads:
+        values: [1, 2, 4]
+      dropout:
+        values: [0.05, 0.1, 0.2, 0.3]
+      n_encoder_layers:
+        values: [1, 2, 3]
+      n_decoder_layers: 
+        values: [1, 2, 3]
+      learning_rate:
+        values: [0.001, 0.0005, 0.0001]
+      optimizer:
+        value: "Adam"
