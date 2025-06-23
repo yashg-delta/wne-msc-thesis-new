@@ -1,0 +1,13 @@
+Strategy,Portfolio_Value,Annualized_Return_Pct,Annualized_Std_Pct,Information_Ratio,Max_Drawdown_Pct,Modified_IR,Num_Trades,Long_Position_Pct,Short_Position_Pct,Transaction_Fees
+Buy and Hold,1.441,13.14,57.74,0.228,77.31,0.039,2,100.00,0.00,Yes
+MACD Strategy,0.516,-20.04,54.14,-0.370,85.77,-0.087,2535,50.39,32.38,Yes
+RSI Strategy,3.341,50.34,50.41,0.999,29.99,1.676,846,28.29,33.47,Yes
+RMSE Informer,0.643,-13.88,15.13,-0.917,44.61,-0.285,16,0.00,9.58,Yes
+Quantile Informer,0.956,-1.52,47.91,-0.032,53.96,-0.001,3395,40.24,27.84,Yes
+GMADL Informer,9.747,115.88,54.44,2.129,32.66,7.552,846,44.80,41.51,Yes
+Buy and Hold (No Fees),1.441,13.14,57.74,0.228,77.31,0.039,2,100.00,0.00,No
+MACD Strategy (No Fees),1.918,24.63,54.07,0.456,67.19,0.167,2535,50.39,32.38,No
+RSI Strategy (No Fees),5.154,74.05,50.37,1.470,26.46,4.113,846,28.29,33.47,No
+RMSE Informer (No Fees),0.650,-13.53,15.13,-0.894,44.05,-0.275,16,0.00,9.58,No
+Quantile Informer (No Fees),5.404,76.86,47.83,1.607,37.34,3.307,3395,40.24,27.84,No
+GMADL Informer (No Fees),14.946,149.43,54.42,2.746,31.57,12.994,846,44.80,41.51,No

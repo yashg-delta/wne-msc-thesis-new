@@ -215,7 +215,7 @@ class ModelPredictionsStrategyBase(StrategyBase):
                  predictions,
                  name: str = None,
                  future: int = 1,
-                 exchange_fee: int = 0.001,
+                 exchange_fee: int = 0.0003,
                  target: str = 'close_price'):
         self.predictions = predictions
         assert 'time_index' in self.predictions.columns
@@ -317,7 +317,7 @@ class ModelQuantilePredictionsStrategy(ModelPredictionsStrategyBase):
         name: str = None,
         future: int = 1,
         target: str = 'close_price',
-        exchange_fee: int = 0.001,
+        exchange_fee: int = 0.0003,
         new_impl=True
     ):
         super().__init__(
@@ -501,7 +501,7 @@ class ModelQuantileReturnsPredictionsStrategy(ModelPredictionsStrategyBase):
         name: str = None,
         future: int = 1,
         target: str = 'returns',
-        exchange_fee: int = 0.001,
+        exchange_fee: int = 0.0003,
         new_impl=True
     ):
         super().__init__(

@@ -1,0 +1,21 @@
+{
+  "evaluation_summary": {
+    "strategy_name": "GMADL_Informer_Complete_All_Strategies_3bps",
+    "timeframe": "5m",
+    "timestamp": "20250623_055430",
+    "output_folder": "/home/ubuntu/wne-msc-thesis-new/src/enhanced_evaluation/core/../../../analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430",
+    "csv_files": {
+      "trade_ledger": "/home/ubuntu/wne-msc-thesis-new/analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430/gmadl_informer_complete_all_strategies_3bps_5m_20250623_trade_ledger.csv",
+      "performance_summary": "/home/ubuntu/wne-msc-thesis-new/analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430/gmadl_informer_complete_all_strategies_3bps_5m_20250623_performance_detailed.csv",
+      "equity_curve": "/home/ubuntu/wne-msc-thesis-new/analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430/gmadl_informer_complete_all_strategies_3bps_5m_20250623_equity_curve.csv",
+      "drawdown_analysis": "/home/ubuntu/wne-msc-thesis-new/analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430/gmadl_informer_complete_all_strategies_3bps_5m_20250623_drawdown_analysis.csv"
+    },
+    "chart_files": {
+      "equity_curve": "/home/ubuntu/wne-msc-thesis-new/src/enhanced_evaluation/core/../../../analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430/gmadl_informer_complete_all_strategies_3bps_5m_equity_curve.png",
+      "underwater_curve": "/home/ubuntu/wne-msc-thesis-new/src/enhanced_evaluation/core/../../../analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430/gmadl_informer_complete_all_strategies_3bps_5m_underwater_curve.png",
+      "rolling_metrics": "/home/ubuntu/wne-msc-thesis-new/src/enhanced_evaluation/core/../../../analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430/gmadl_informer_complete_all_strategies_3bps_5m_rolling_metrics.png",
+      "returns_distribution": "/home/ubuntu/wne-msc-thesis-new/src/enhanced_evaluation/core/../../../analysis/gmadl_informer_complete_all_strategies_3bps_5m_20250623_055430/gmadl_informer_complete_all_strategies_3bps_5m_returns_distribution.png"
+    },
+    "interactive_files": {}
+  }
+}

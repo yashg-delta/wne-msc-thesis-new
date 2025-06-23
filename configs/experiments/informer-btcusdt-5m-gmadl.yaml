@@ -55,7 +55,7 @@ fields:
 loss:
   value:
    name: "GMADL"
-   a: 1000
+   a: 100
    b: 2
 model:
   value:

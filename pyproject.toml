@@ -15,7 +15,7 @@ version = "0.0.1"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "pytorch-forecasting==1.0.0",
+    "pytorch-forecasting==1.4.0",
     "plotly==5.22.0",
     "wandb==0.17.7",
     "TA-lib==0.4.32",

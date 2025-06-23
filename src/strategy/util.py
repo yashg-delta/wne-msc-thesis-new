@@ -61,9 +61,9 @@ def get_sweep_window_predictions(sweep_id, part):
 
         artifact_path = window_prediction.download()
         index = torch.load(os.path.join(
-            artifact_path, 'index.pt'), map_location=torch.device('cpu'))
+            artifact_path, 'index.pt'), map_location=torch.device('cpu'), weights_only=False)
         preds = torch.load(os.path.join(
-            artifact_path, 'predictions.pt'), map_location=torch.device('cpu'))
+            artifact_path, 'predictions.pt'), map_location=torch.device('cpu'), weights_only=False)
 
         result.append((window_num, index, preds.numpy()))
 

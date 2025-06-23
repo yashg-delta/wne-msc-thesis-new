@@ -17,7 +17,7 @@ def parameter_sweep(
         num_workers: int = 4,
         params_filter: Optional[Callable] = None,
         log_every: int = 200,
-        exchange_fee: float = 0.001,
+        exchange_fee: float = 0.0003,
         padding: int = 0,
         sort_by: str = 'mod_ir',
         interval: str = '5min') -> pd.DataFrame:
@@ -59,7 +59,7 @@ def evaluate_strategy(
         strategy: StrategyBase,
         include_arrays: bool = True,
         padding: int = 0,
-        exchange_fee: float = 0.001,
+        exchange_fee: float = 0.0003,
         interval: str = "5min"):
     """Evaluates a trading strategy."""
 
